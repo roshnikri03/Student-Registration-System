@@ -7,9 +7,106 @@
   <meta name="description" content="Student Registration System – register, edit, and delete student records." />
   <meta name="author" content="Student Registration System" />
   <title>Student Registration System</title>
+ 
 </head>
 <body>
 
- 
+  <!-- Task 2: Header with title and description -->
+  <header class="site-header">
+    <h1>Student Registration System</h1>
+    <p class="subtitle">Register, manage, and track student records with ease.</p>
+  </header>
+
+  <!-- Main layout: form on left, records on right -->
+  <main class="container">
+
+    <!-- Task 3: Registration Form -->
+    <section class="form-section" aria-label="Student Registration Form">
+      <h2>Register Student</h2>
+      <form id="registrationForm" novalidate>
+
+        <div class="form-group">
+          <label for="studentName">Student Name</label>
+          <input
+            type="text"
+            id="studentName"
+            placeholder="Enter full name"
+            autocomplete="off"
+          />
+          <span class="error-msg" id="nameError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="studentId">Student ID</label>
+          <input
+            type="text"
+            id="studentId"
+            placeholder="Enter student ID (numbers only)"
+            autocomplete="off"
+          />
+          <span class="error-msg" id="idError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="emailId">Email ID</label>
+          <input
+            type="email"
+            id="emailId"
+            placeholder="Enter email address"
+            autocomplete="off"
+          />
+          <span class="error-msg" id="emailError"></span>
+        </div>
+
+        <div class="form-group">
+          <label for="contactNumber">Contact Number</label>
+          <input
+            type="text"
+            id="contactNumber"
+            placeholder="Enter contact (min 10 digits)"
+            autocomplete="off"
+          />
+          <span class="error-msg" id="contactError"></span>
+        </div>
+
+        <!-- Hidden field to track which record is being edited -->
+        <input type="hidden" id="editIndex" value="-1" />
+
+        <button type="submit" id="submitBtn" class="btn btn-primary">Add Student</button>
+      </form>
+    </section>
+
+    <!-- Task 4: Display Section -->
+    <section class="display-section" aria-label="Registered Students">
+      <h2>Registered Students</h2>
+
+      <!-- Table wrapper — scrollbar added dynamically via JS when overflow occurs -->
+      <div id="tableWrapper" class="table-wrapper">
+        <table id="studentTable">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Student ID</th>
+              <th>Email ID</th>
+              <th>Contact No.</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="studentTableBody">
+            <!-- Rows injected by JavaScript -->
+          </tbody>
+        </table>
+
+        <!-- Shown when no students are registered -->
+        <p id="emptyMessage" class="empty-message">No students registered yet.</p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>&copy; 2025 Student Registration System. All rights reserved.</p>
+  </footer>
+  
 </body>
 </html>
