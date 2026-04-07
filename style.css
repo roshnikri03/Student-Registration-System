@@ -160,3 +160,150 @@ body {
 .btn-delete:hover {
   background: #dc2626;
 }
+
+/* ---------- Display Section ---------- */
+.display-section {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(6px);
+  border-radius: 12px;
+  padding: 1.5rem;
+  flex: 1;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+  min-width: 0; /* prevent overflow in flex */
+}
+
+/* Table wrapper — overflow + dynamic scrollbar handled by JS */
+.table-wrapper {
+  max-height: 420px;
+  /* overflow-y is set dynamically via JS based on row count */
+  overflow-x: auto;
+  border-radius: 8px;
+}
+
+/* Scrollbar styling */
+.table-wrapper::-webkit-scrollbar {
+  width: 8px;
+}
+.table-wrapper::-webkit-scrollbar-track {
+  background: rgba(0,0,0,0.05);
+  border-radius: 4px;
+}
+.table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(99,102,241,0.5);
+  border-radius: 4px;
+}
+.table-wrapper::-webkit-scrollbar-thumb:hover {
+  background: rgba(99,102,241,0.8);
+}
+
+/* Table */
+#studentTable {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+#studentTable thead {
+  background: rgba(99, 102, 241, 0.15);
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+#studentTable th {
+  padding: 0.7rem 0.75rem;
+  text-align: left;
+  font-weight: 600;
+  color: #1e293b;
+  white-space: nowrap;
+}
+
+#studentTable td {
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
+  vertical-align: middle;
+  word-break: break-word;
+}
+
+#studentTable tbody tr:last-child td {
+  border-bottom: none;
+}
+
+#studentTable tbody tr:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+/* Action buttons cell — keep side by side */
+.action-cell {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: nowrap;
+}
+
+/* Empty message */
+.empty-message {
+  text-align: center;
+  padding: 2rem;
+  color: #6b7280;
+  font-size: 0.9rem;
+  display: none; /* shown/hidden via JS */
+}
+
+/* ---------- Footer ---------- */
+.site-footer {
+  text-align: center;
+  padding: 1rem;
+  font-size: 0.8rem;
+  color: #374151;
+  opacity: 0.7;
+}
+
+/* ==============================================
+   Responsive Breakpoints
+   ============================================== */
+
+/* Tablet: 641px – 1024px */
+@media (max-width: 1024px) {
+  .container {
+    padding: 1rem 1.2rem 1.5rem;
+    gap: 1.2rem;
+  }
+
+  .form-section {
+    flex: 0 0 270px;
+  }
+}
+
+/* Mobile: ≤ 640px — stack form above table */
+@media (max-width: 640px) {
+  .container {
+    flex-direction: column;
+    padding: 0.75rem;
+    gap: 1rem;
+  }
+
+  .form-section {
+    flex: none;
+    width: 100%;
+  }
+
+  .display-section {
+    width: 100%;
+  }
+
+  .table-wrapper {
+    max-height: 300px;
+  }
+
+  #studentTable th,
+  #studentTable td {
+    padding: 0.5rem 0.5rem;
+    font-size: 0.8rem;
+  }
+
+  .btn-edit,
+  .btn-delete {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.72rem;
+  }
+}
