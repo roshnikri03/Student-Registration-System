@@ -125,3 +125,59 @@ function clearErrors() {
   [nameInput, idInput, emailInput, contactInput].forEach(el => el.classList.remove('invalid'));
   [nameError, idError, emailError, contactError].forEach(el => el.textContent = '');
 }
+
+// =====================================================
+// Render Table
+// Builds table rows from the students array
+// =====================================================
+function renderTable() {
+  tableBody.innerHTML = '';
+
+  if (students.length === 0) {
+    // Show empty state message; hide the table head visually
+    emptyMessage.style.display = 'block';
+    document.getElementById('studentTable').style.display = 'none';
+  } else {
+    emptyMessage.style.display = 'none';
+    document.getElementById('studentTable').style.display = 'table';
+
+    students.forEach(function (student, index) {
+      const row = document.createElement('tr');
+
+      row.innerHTML = `
+        <td>${escapeHTML(student.name)}</td>
+        <td>${escapeHTML(student.id)}</td>
+        <td>${escapeHTML(student.email)}</td>
+        <td>${escapeHTML(student.contact)}</td>
+        <td>
+          <div class="action-cell">
+            <button class="btn btn-edit"   onclick="editStudent(${index})">Edit</button>
+            <button class="btn btn-delete" onclick="deleteStudent(${index})">Delete</button>
+          </div>
+        </td>
+      `;
+
+      tableBody.appendChild(row);
+    });
+  }
+
+  // Dynamically manage the vertical scrollbar (Task 6 requirement)
+  updateScrollbar();
+}
+
+// =====================================================
+// Dynamic Scrollbar — added via JavaScript
+// Applies overflow-y: scroll only when content overflows
+// =====================================================
+function updateScrollbar() {
+  // Max height is defined in CSS (420px desktop / 300px mobile)
+  const maxHeight = parseInt(getComputedStyle(tableWrapper).maxHeight) || 420;
+
+  if (tableWrapper.scrollHeight > maxHeight) {
+    // Content overflows — enable vertical scrollbar
+    tableWrapper.style.overflowY = 'scroll';
+  } else {
+    // No overflow — remove scrollbar to avoid empty gutter
+    tableWrapper.style.overflowY = 'hidden';
+  }
+}
