@@ -34,6 +34,9 @@ This project allows users to **add, edit, and delete student records**, with dat
 - JavaScript (DOM Manipulation)  
 
 ---
+## 📸 Snapshots
+<img width="2940" height="1678" alt="Student Registration System" src="https://github.com/user-attachments/assets/73cb4d91-7f64-4ae6-8165-082790b891d0" />
+
 
 ## 📌 How to Run the Project
 
