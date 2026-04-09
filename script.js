@@ -221,3 +221,38 @@ function deleteStudent(index) {
   saveToStorage();
   renderTable();
 }
+
+// =====================================================
+// LocalStorage Helpers
+// =====================================================
+
+// Save the students array to localStorage
+function saveToStorage() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(students));
+}
+
+// Load and parse students from localStorage; returns [] if nothing stored
+function loadFromStorage() {
+  const data = localStorage.getItem(STORAGE_KEY);
+  try {
+    return data ? JSON.parse(data) : [];
+  } catch {
+    // Corrupted data — start fresh
+    return [];
+  }
+}
+
+// =====================================================
+// Security Helper — prevent XSS when inserting user text
+// =====================================================
+function escapeHTML(str) {
+  return str
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
+}
+
+// Re-check scrollbar whenever the window is resized
+window.addEventListener('resize', updateScrollbar);
