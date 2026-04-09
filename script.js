@@ -181,3 +181,43 @@ function updateScrollbar() {
     tableWrapper.style.overflowY = 'hidden';
   }
 }
+
+// =====================================================
+// Edit Student
+// Populates the form with the selected student's data
+// =====================================================
+function editStudent(index) {
+  const student = students[index];
+
+  nameInput.value    = student.name;
+  idInput.value      = student.id;
+  emailInput.value   = student.email;
+  contactInput.value = student.contact;
+
+  // Store which record we're editing
+  editIndexInput.value    = index;
+  submitBtn.textContent   = 'Update Student';
+
+  // Scroll to form on mobile so the user can see it
+  form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+  clearErrors();
+}
+
+// =====================================================
+// Delete Student
+// Removes the record at the given index
+// =====================================================
+function deleteStudent(index) {
+  // If we were editing this record, reset the form
+  if (parseInt(editIndexInput.value) === index) {
+    form.reset();
+    editIndexInput.value  = '-1';
+    submitBtn.textContent = 'Add Student';
+    clearErrors();
+  }
+
+  students.splice(index, 1);
+  saveToStorage();
+  renderTable();
+}
